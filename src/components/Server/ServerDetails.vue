@@ -3,7 +3,9 @@
         <p v-if="server == null">Please select a server to show the details</p>
         <div v-else>
             <p>Server #{{server.id}} Status:{{server.status}}</p>
-            <button v-on:click="resetStatus">Status to Normal</button>
+            <button v-on:click="resetStatus('Normal')">Set to Normal</button>
+            <button v-on:click="resetStatus('Critical')">Set to Critical</button>
+            <button v-on:click="resetStatus('Unknown')">Set to Unknown</button>
         </div>
     </div>
 </template>
@@ -17,8 +19,8 @@
             }
         },
         methods: {
-            resetStatus() {
-                this.server.status = "Normal";
+            resetStatus(newStatus) {
+                this.server.status = newStatus;
             }
         },
         created() {
